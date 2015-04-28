@@ -1,0 +1,47 @@
+/**
+ * "Jumping In" example CSS file
+ */
+
+body { 
+	direction:rtl;
+	font-family: "Arial (Hebrew)", "David (Hebrew)", "Courier New (Hebrew)";
+}
+
+h1 {
+	border-bottom: 1px solid #666; 
+}
+
+#contacts {
+	width: 80%;
+	border: 1px solid #aaa;
+	border-collapse: collapse;
+}
+
+#contacts td, #contacts th {
+	padding: 3px;
+	border: 1px solid #ccc;
+}
+
+#contacts td {
+	font-size: 10pt;
+	height: 50px;
+	vertical-align: middle;
+	width: 13.5%;
+}
+
+#contacts td.addCont {
+    font-size: 14pt;
+	height: 50px;
+	vertical-align: middle;
+	width: 13.5%;
+}
+
+a {
+    text-decoration: none;
+}
+a:link, a:visited {
+    color: blue;
+}
+a:hover {
+    color: red;
+}
