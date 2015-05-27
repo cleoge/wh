@@ -20,21 +20,11 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 
 			<h1>דיווח שעות עבודה לפרוייקט</h1>
 								
-			 <table id="menus">
-			  <tr> 
-				  <td> <h3><a href=insert_training_hours.php> דיווח שעות הדרכה </a> </h3> </td>
-				  <td> <h3>| </h3>  </td> 
-				  <td> <h3><a href=update_hours.php> עדכון דיווחים</a> </h3> </td>
-				  <td> <h3>| </h3>  </td> 
-				  <td> <h3><a href=rep_salary.php> דוח שעות עבור שכר</a> </h3> </td>
-				  <td> <h3>| </h3>  </td>  
-				  <td> <h3>דוח סיכום שעות</h3></td>
-				  <td> <h3>| </h3>  </td>
-				  <td> <h3><a href=admin.php> אדמין </a> </h3>  </td>
-				  <td> <h3>| </h3>  </td>
-				  <td> <h3>יציאה </h3>  </td>
-			  </tr>
-			 </table>               
+            <!--  upper menu      !-->
+			
+            <?php $sourceFile='work'; 
+			      include 'index_menu.php';
+		    ?>
 					
 			<table id="contacts">
 					<tr class="table-head">
@@ -50,10 +40,10 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 						<th>שבוע שמתחיל בתאריך:</th>
 						<td><select>
 								  <option value=""></option>	
-								  <option value="projWeek1">18 - 26.04.15 - 02.05.15</option>
-								  <option value="projWeek2">19 - 03.05.15 - 09.05.15</option>
-								  <option value="projWeek3">20 - 10.05.15 - 16.05.15</option>
-								  <option value="projWeek4">17 - 03.05.15 - 23.05.15</option>
+								  <option value="projWeek1">1 - 26.04.15 - 02.05.15</option>
+								  <option value="projWeek2">2 - 03.05.15 - 09.05.15</option>
+								  <option value="projWeek3">3 - 10.05.15 - 16.05.15</option>
+								  <option value="projWeek4">4 - 17.05.15 - 23.05.15</option>
 							</select>
 						</td>
 						<th>סוג דיווח:</th>
@@ -103,14 +93,14 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 					</tr>
 					
 					<tr>   
-					   <td> <a href=update_emp.php>123</a></td>
+					   <td> <a href=emp_card.php>123</a></td>
 					   <td> אאאא</td>
 					   <td> אאאא</td>
 					   <td> 123456789</td>
 					   <td> ראש צוות</td>
 					   
-					   <td><input type="text" name="hrsNum11" id="hrsNum11" size="4" /> </td>
-					   <td><input type="text" name="sumTravel11" id="sumTravel11" size="4" /> </td>
+					   <td><input type="text" name="hrsNum11" id="hrsNum11" size="4" value="8" disabled /> הדרכה</td>
+					   <td><input type="text" name="sumTravel11" id="sumTravel11" size="4" value="20.5" disabled /> </td>
 					   
 					   <td><input type="text" name="hrsNum12" id="hrsNum12" size="4" value="10"/> </td>
 					   <td><input type="text" name="sumTravel12" id="sumTravel12" size="4" value="22.5"/> </td>
@@ -133,14 +123,14 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 				   
 				   <tr>   
 				   
-					   <td> <a href=update_emp.php>222</a></td>
+					   <td> <a href=emp_card.php>222</a></td>
 					   <td> בבבבבב</td>
 					   <td> אאאא</td>
 					   <td> 987654321</td>
 					   <td> דייל</td>
 					   
-					   <td><input type="text" name="hrsNum21" id="hrsNum21" size="4" /> </td>
-					   <td><input type="text" name="sumTravel21" id="sumTravel21" size="4" /> </td>
+					   <td><input type="text" name="hrsNum21" id="hrsNum21" size="4" value="4" disabled /> הדרכה </td>
+					   <td><input type="text" name="sumTravel21" id="sumTravel21" size="4" value="20.5" disabled /> </td>
 					   
 					   <td><input type="text" name="hrsNum22" id="hrsNum22" size="4" value="10"/> </td>
 					   <td><input type="text" name="sumTravel22" id="sumTravel22" size="4" value="22.5"/> </td>
@@ -163,7 +153,7 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 				   </tr>
 				   
 				   <tr>   
-					   <td> <a href=update_emp.php>333</a></td>
+					   <td> <a href=emp_card.php>333</a></td>
 					   <td> גגגג</td>
 					   <td> גגגג1</td>
 					   <td> 987654320</td>

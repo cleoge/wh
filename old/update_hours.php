@@ -19,8 +19,7 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 	
 	    <form id="update-hours" method="post" action="update_hours.php"  name="form1" id="form1" >	
 	        
-			<h1>עדכון דיווח שעות לפרוייקט</h1>
-	        
+			<h1>עדכון דיווח שעות לפרוייקט</h1>	        
 	        
 			<table id="menus">
 			  <tr> 
@@ -30,7 +29,7 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 				  <td> <h3>| </h3>  </td> 		  
 				  <td> <h3><a href=rep_salary.php> דוח שעות עבור שכר</a> </h3> </td>
 				  <td> <h3>| </h3>  </td>  
-				  <td> <h3>דוח סיכום שעות</h3></td>
+				  <td> <h3><a href=rep_proj_hours.php>דוח סיכום שעות לפרוייקט</a></h3></td>
 				  <td> <h3>| </h3>  </td>
 				  <td> <h3><a href=admin.php> אדמין </a> </h3>  </td>
 				  <td> <h3>| </h3>  </td>
@@ -53,10 +52,10 @@ $weekDays = array('ראשון', 'שני', 'שלישי', 'רביעי',
 					<th>שבוע שמתחיל בתאריך:</th>
 					<td><select>
 							  <option value=""></option>	
-							  <option value="projWeek1">18 - 26.04.15 - 02.05.15</option>
-							  <option value="projWeek2">19 - 03.05.15 - 09.05.15</option>
-							  <option value="projWeek3">20 - 10.05.15 - 16.05.15</option>
-							  <option value="projWeek4">17 - 03.05.15 - 23.05.15</option>
+							  <option value="projWeek1">1 - 26.04.15 - 02.05.15</option>
+							  <option value="projWeek2">2 - 03.05.15 - 09.05.15</option>
+							  <option value="projWeek3">3 - 10.05.15 - 16.05.15</option>
+							  <option value="projWeek4">4 - 03.05.15 - 23.05.15</option>
 						</select>
 					</td>
 															

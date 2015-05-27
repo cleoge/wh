@@ -2,42 +2,56 @@
 <!DOCTYPE html>
 
 
-<html >
+<html>
 
     <head>
         <meta charset="UTF-8">
         <link type="text/css" rel="stylesheet" href="contact.css" />  
         <title>WH</title>
     </head>
+	
     <body>                 
-	        <h1>דוח שעות עבור שכר לפי חברות כ"א</h1>
-	        
-	        
-	 <table id="menus">
-	  <tr> 
-	      <td> <h3><a href=index.php> ראשי</a> </h3></td>
-	       <td> <h3>| </h3>  </td>
-	      <td> <h3>דוח סיכום שעות</h3></td>
-	      <td> <h3>| </h3>  </td>
-	      <<td> <h3><a href=admin.php> אדמין </a> </h3>  </td>
-	      <td> <h3>| </h3>  </td>
-	      <td> <h3>יציאה </h3>  </td>
-	  </tr>
-	 
-	 </table>        
-	        
-	        
+	
+	  <h1>דוח שעות עבור שכר לפי חברות כ"א</h1>
+	                
+	        <!--  upper menu      !-->
+			
+            <?php $repSourceFile='salary'; 
+			      include 'rep_menu.php';
+		    ?>    
+	     
+	       
 	        <table id="contacts">
 		            <tr class="table-head">
-		                <th>פרוייקט:</th>
-						<td>בחירה מרשימה</td>
-						<th>חודש הדיווח:</th>
-						<td>בחירה מתוך רשימת חודשים + שנה</td>
+		                <th>פרוייקט: &nbsp;
+						    <select>
+								  <option value=""></option>	
+								  <option value="projName1">תחבורה ירושלים</option>
+								  <option value="projName2">תחבורה חיפה</option>
+								  <option value="projName3">מטרונית חיפה</option>
+								  <option value="projName4">תחבורה שרון</option>
+							</select>
+						</th>
+						
+						<th>חודש הדיווח:&nbsp;
+						    <select>
+								  <option value=""></option>	
+								  <option value="m1">ינואר</option>
+								  <option value="m2">פברואר</option>
+								  <option value="m3">מרץ</option>
+								  <option value="m4">אפריל</option>
+								  <option value="m5">מאי</option>
+							</select>
+							&nbsp;
+							<select>
+								  <option value=""></option>	
+								  <option value="y1">2015</option>
+								  <option value="y2">2014</option>
+								  <option value="y3">2013</option>
+							</select>
+						</th>
 						<th>ייצוא לאקסל</th>				
-		            </tr>
-		            
-	
-		            
+		            </tr>		            			            
 	        </table>
 	
 	        <br>        

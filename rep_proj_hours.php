@@ -10,29 +10,27 @@
         <title>WH</title>
     </head>
     <body>                 
-	        <h1>דוח שעות עבור שכר לפי חברות כ"א</h1>
-	        
-	        
-	 <table id="menus">
-	  <tr> 
-	      <td> <h3><a href=index.html> דיווח שעות</a> </h3></td>
-	       <td> <h3>| </h3>  </td>
-	      <td> <h3>דוח סיכום שעות</h3></td>
-	      <td> <h3>| </h3>  </td>
-	      <td> <h3> אדמין  </h3>  </td>
-	      <td> <h3>| </h3>  </td>
-	      <td> <h3>יציאה </h3>  </td>
-	  </tr>
-	 
-	 </table>        
+	        <h1>דוח סיכום שעות לפרוייקט</h1>
+	        	        
+	        <!--  upper menu      !-->
+			
+            <?php $repSourceFile='hours'; 
+			      include 'rep_menu.php';
+		    ?>     
 	        
 	        
 	        <table id="contacts">
 		            <tr class="table-head">
-		                <th>פרוייקט:</th>
-						<td>בחירה מרשימה</td>
-						<th>חודש הדיווח:</th>
-						<td>בחירה מתוך רשימת חודשים + שנה</td>
+		                <th>פרוייקט: &nbsp;
+						    <select>
+								  <option value=""></option>	
+								  <option value="projName1">תחבורה ירושלים</option>
+								  <option value="projName2">תחבורה חיפה</option>
+								  <option value="projName3">מטרונית חיפה</option>
+								  <option value="projName4">תחבורה שרון</option>
+							</select>
+						</th>
+						
 						<th>ייצוא לאקסל</th>				
 		            </tr>
 		            
@@ -44,10 +42,7 @@
 		    <table id="contacts">
 		            
 		            <tr class="table-head">
-		                <th>חברת כ"א</th> 
-		                <th>שם משפחה עובד</th>
-		                <th>שם פרטי עובד</th>
-		                <th>ת.ז. עובד</th>
+		                <th>חודש-שנה</th> 		                
 		                <th>מספר ימי פעילות</th>
 						<th>כמות שעות פעילות 100%</th>
 		                <th>כמות שעות נוספות 125%</th>
@@ -60,10 +55,19 @@
 		            </tr>
 		            
 		           <tr>   
-		               <td> מנפאואר</td>               
-		               <td> אאאא</td>
-		               <td> בבב</td>
-		               <td> 123456789</td>
+		               <td> נובמבר 2014</td> 
+                       <td> 716</td>
+		               <td>5446</td>	               
+		               <td>138.75</td>
+		               <td>99.75</td>	               
+		               <td>9822</td>
+		               <td>132 </td>	               
+		               <td> 754</td>
+		               <td>1991.8 </td>					   		              		               
+		           </tr>
+		           
+		           <tr>   
+		               <td> אוקטובר 2014</td>               		               
 		               <td> 12</td>
 		               <td>86.5</td>	               
 		               <td>1.5 </td>
@@ -72,30 +76,10 @@
 		               <td>1 </td>	               
 		               <td> 6</td>
 		               <td>20.8 </td>
-		               
-		           </tr>
-		           
-		           <tr>   
-		               <td> מנפאואר</td>               
-		               <td> גגג</td>
-		               <td> דדדד</td>
-		               <td> 023456789</td>
-		               <td> 7</td>
-		               <td>52</td>	               
-		               <td>0 </td>
-		               <td>0</td>	               
-		               <td>96.6 </td>
-		               <td>1 </td>	               
-		               <td> 6</td>
-		               <td>13.8 </td>
- 
 		           </tr>
 
 		           <tr>   
-		               <td> אתגר</td>               
-		               <td> ההה</td>
-		               <td> ווו</td>
-		               <td> 023456321</td>
+		               <td> ספטמבר 2014</td>               		               
 		               <td> 8</td>
 		               <td>59.5</td>	               
 		               <td>0 </td>

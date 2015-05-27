@@ -1,6 +1,5 @@
-/**
- * "Jumping In" example CSS file
- */
+/* calendar css*/
+ @import 'lib/jsdatepick-calendar/jsDatePick_ltr.min.css';
 
 body { 
 	direction:rtl;
@@ -36,6 +35,25 @@ h1 {
 	width: 13.5%;
 }
 
+#card {
+	width: 50%;
+	border: none;
+	border-collapse: collapse;
+}
+
+#card td, #card th {
+    font-size: 14pt;
+	padding: 3px;
+	border: 1px solid #ccc;
+	text-align: right;
+}
+
+#card td {
+	font-size: 14pt;
+	height: 50px;
+	vertical-align: middle;
+	width: 13.5%;
+}
 a {
     text-decoration: none;
 }
