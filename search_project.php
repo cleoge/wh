@@ -76,23 +76,7 @@ function doLoad() {
 							<td><?php echo $project->toDate   ?></td>
 			           </tr>	
 		            <?php } ?>
-                    <tr>					                       
-					    <td><a href=project_card.php>111</a></td>
-                        <td> תחבורה ירושלים xxxx</td>
-						<td> 1/11/2014 </td>
-						<td> 30/11/2014 </td>                         							
-
-					</tr>   
-
-                    <tr>					                       
-					    <td><a href=project_card.php>222</a></td>
-                        <td> תחבורה חיפה xxxx</td>
-						<td> 1/11/2014 </td>
-						<td> 30/11/2014 </td>                         							
-
-					</tr>   					
-					
-		            
+                    
 	        </table>
 			<br>
 	        

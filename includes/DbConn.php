@@ -9,10 +9,10 @@ class DbConn{
 	static public function getDbConnection()
 	{
 		$dbUri  = 'mysql:host=127.0.0.1;dbname=wh';					
-		//$dbUser = 'whuser';
-		//$dbPass = 'whuser';
-		$dbUser = 'root';
-		$dbPass = '';
+		$dbUser = 'whuser';
+		$dbPass = 'whuser';
+		//$dbUser = 'root';
+		//$dbPass = '';
 		// Connect, and set error mode to Exceptions
 		$dbh = new PDO( $dbUri, 
 		                $dbUser, 

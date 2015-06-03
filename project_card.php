@@ -13,6 +13,9 @@ if (isset($_GET['pid'])) {
 	$projectId = $_GET['pid'];	
 	//call method to get project details
 	$project = Project::getProject($projectId);  
+	// call method to get project locations
+	$projLoc=Project::getProjectLocations($projectId);
+	//var_dump($projLoc);
 } else {
 	// new project (the page is accessed through the URL)
 	$projectId = null;	
@@ -23,19 +26,35 @@ if (isset($_GET['pid'])) {
 // if the user pressed the 'Save project' button
 // get user's input from the form
 
-if (isset($_POST['save_proj'])){
-	if ($projectId) { 
-		$newProjId   = $_POST['proj_id'];
-	}	
+if (isset($_POST['save_proj']))
+{		
+	$newProjId   = $_POST['proj_id'];
 	$newProjName = $_POST['proj_name'];
 	$newFromDate = $_POST['from_date'];
     $newToDate   = $_POST['to_date'];
 	
-	//echo 'newProjName= ' .$newProjName;
-	$newRow = new Project(null, $newProjName, null, null );
-	$newRow = Project::saveProject();
-    
-    //header('Location: http://localhost/index.php');
+	// update existing project
+	//echo '$newProjId= '.$newProjId;
+	if ($newProjId) { 			
+			//not ok:     $newRow = new Project($newProjId, $newProjName, null, null );
+			// bring object 
+			$newRow = Project::getProject($newProjId);
+			// assign new values to object properties
+			$newRow->projName = $newProjName;
+			$newRow->fromDate = $newFromDate;
+			$newRow->toDate = $newToDate;
+			// call function to update in the db
+			// not ok:     $newRow = Project::saveProject();
+			$newRow->saveProject();
+	} else 	{
+		    // insert new project
+			$newRow = Project::addProject($newProjName,$newFromDate,$newToDate);
+			// get id of the new inserted project and redirect to project details page
+			$lastProjId = $newRow->projId;
+			//echo 'lastProjId = ' . $lastProjId;						
+			$url = "http://localhost/wh/project_card.php?pid=$lastProjId";
+            header("Location: ".$url);			
+	}	
 }
 
 ?>
@@ -111,7 +130,7 @@ function doLoad() {
     </head>
     <body onload="doLoad()">
         <!---Define form -->
-        <form id="add_proj" method="post" action="project_card.php"  name="form1" id="form1" >
+        <form id="add_proj" method="post" action="project_card.php"  name="add_proj" >
         
             <h1>כרטיס פרוייקט</h1>   
 
@@ -120,15 +139,16 @@ function doLoad() {
 			
 		    <table id="card">
 			        <tr>
-						<th>מס` פרוייקט: &nbsp;												
-                          <input type="text" name="proj_id" id="proj_id" size="10" 						 
+						<th>מס` פרוייקט: &nbsp;	
+						  <input type="text" name="proj_id" id="proj_id" size="10" readonly="readonly" 						 
 						         <?php if ($projectId) { ?>
-												value="<?php echo $project->projId ?>" disabled />
+												value="<?php echo $project->projId ?>" />
 								 <?php } else { ?>
-												value= "" disabled />
+												value= "" />
 								 <?php } ?> 
                         </th>
 					</tr>
+					
 		            <tr>
 						<th >שם פרוייקט:&nbsp;						
                           <input type="text" name="proj_name" id="proj_name" size="60" 
@@ -137,15 +157,28 @@ function doLoad() {
 								 <?php } else { ?>
 												value= "" tabindex=1 required />
 								 <?php } ?>
-						         
                         </th>					
 					</tr>
 					
                     <tr>
-						<th >תחנות:&nbsp;	
-						   <input type="text" name="loc_name" id="locName" size="40" 
-						          value="ללא" disabled />								  
-		                          <a href="location_card.php" target="_blank">+ הוספת תחנה/ות</a>							
+						<th >תחנות:&nbsp;							
+					
+						   <input type="text" name="loc_name" id="loc_name" size="40" 
+						          value=" <?php if (isset($projLoc)){ 
+													foreach ($projLoc as $location ){
+														echo $location->locName . ", ";
+								                    }	
+												} else{
+														echo "ללא ";
+												}
+										  ?> 
+								  "	disabled />		
+								  
+								  <?php if ($projectId) { 
+								         echo '<a href=location_card.php?pid=' . $project->projId . ' target="_blank"> ' . 
+			           			              '+ הוספת תחנה/ות' . ' </a>' . "\n";
+								        }	  
+								  ?>								         		                          							
 						</th>				
 					</tr>
 					
@@ -156,13 +189,12 @@ function doLoad() {
 		                          <a href="team_card.php" target="_blank">+ הוספת צוות/ים</a>							
 						</th>				
 					</tr>
-					
+
                     <tr>					
 					    <th> מתאריך:&nbsp;                   	                    
 	                          <input type="text" name="from_date"  id="fromDate"
 							     <?php if ($projectId) { ?>
-											value="<?php echo $project->fromDate ?>"
-	                                        
+											value="<?php echo $project->fromDate ?>"	                                        
 								 <?php } else { ?>
 												value= ""
 								 <?php } ?>

@@ -17,29 +17,39 @@ class Project
 			$this->fromDate = $fromDate;
 			$this->toDate   = $toDate;				
 	}	
-	 	 	 
-	/*  
-	private static function getDbConnection()
-	{
-		$dbUri  = 'mysql:host=127.0.0.1;dbname=wh';					
-		$dbUser = 'whuser';
-		$dbPass = 'whuser';
-		// Connect, and set error mode to Exceptions
-		$dbh = new PDO( $dbUri,  
-		                $dbUser, 
-					    $dbPass, 
-					    array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION)
-					   );
-		$dbh->exec("SET NAMES 'utf8'");
-		return $dbh;
-	}
-	*/
-	
+	 	 	 	
 	// properties
 	public $projId;
 	public $projName;
 	public $fromDate;
 	public $toDate;	
+	
+	/**
+	 * Add (insert) a new project
+	 *
+	 * @param  string $projName
+	 * @param  date $fromDate
+	 * @param  date $toDate
+	 * @return Project|null (Returns null if no such project exists)
+	 */	 
+	static public function addProject($projName,$fromDate,$toDate)
+	{
+		$dbh = DbConn::getDbConnection();
+		$sql = "INSERT INTO projects(proj_name,from_date,to_date) VALUES(?,?,?)";
+		$stmt = $dbh->prepare($sql);	
+        if (!$fromDate) { 
+			$fromDate   = null;
+	    }		
+        if (!$toDate) { 
+			$toDate   = null;
+	    }					
+		$newRow = array($projName, $fromDate, $toDate);		
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute($newRow);
+		return (Project::getProject($dbh->lastInsertId()));
+		//close Db connection
+        $dbh = DbConn::closeDbConnection();	
+	}
 	
 	/**
 	 * Get full project information
@@ -64,7 +74,9 @@ class Project
 		}
 		else{
 			return null;
-		}		
+		}	
+        //close Db connection
+        $dbh = DbConn::closeDbConnection();			
 	}
 	
 	/**
@@ -84,7 +96,8 @@ class Project
 		       "FROM projects ORDER BY proj_name ";
 		$stmt = $dbh->prepare($sql);
 	 
-		if ($stmt->execute()){
+		if ($stmt->execute())
+		{
 			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 			
 			foreach($result as $data){
@@ -102,7 +115,8 @@ class Project
 				  return null;
 				 }
 		}
-		else{
+		else
+		{
 			return null;
 		}
         
@@ -110,21 +124,85 @@ class Project
         $dbh = DbConn::closeDbConnection();		
 	}
 	
-	// methods
+    //	update existing project
 	public function saveProject()
 	{
 		//open DB connection
 		$dbh = DbConn::getDbConnection();				
 		
-		// insert new row in projects table
-        $sql = "INSERT INTO projects (proj_id, proj_name, from_date, to_date) VALUES (?,?,?,?)";				
-		//$newRow = array(NULL, $_POST['proj_name'], null, null );
-		$newRow = array(NULL, $projName, null, null );		
+		// update a row in projects table
+        $sql = "UPDATE projects SET proj_name=?, from_date=?, to_date=? WHERE proj_id=?";
+		$updRow = array($this->projName, $this->fromDate, $this->toDate, $this->projId );	
+        //var_dump($updRow )	;	
         $stmt = $dbh->prepare($sql);
-        $stmt->execute($newRow);
-		//$stmt->execute((array)$newRow);
+        $stmt->execute($updRow);		
 		
 		//close Db connection
         $dbh = DbConn::closeDbConnection();	
 	}
-}
+	
+	/******************************************
+	*           Handle project locations
+	*******************************************
+	*/	
+	
+	/**
+	 * Get project locations
+	 *
+	 * @param  integer $projId
+	 * @return array|null (Returns null if there are no locations for the project)
+	 */	 
+	static public function getProjectLocations($projId)
+	{
+		$dbh = DbConn::getDbConnection();
+		$sql = "SELECT loc_id, loc_name ".		       			   
+		       "FROM proj_location where proj_id = ?";
+		$stmt = $dbh->prepare($sql);	
+		
+		if ($stmt->execute(array($projId)))
+		{
+			$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+			//var_dump($result);
+			
+			foreach($result as $data)
+			{
+				$tempLocation = new Location($data['loc_id'],
+										     $data['loc_name']);											
+			
+				$projLocationsList[] = $tempLocation;
+			}
+			if (isset($projLocationsList)){
+				return $projLocationsList;
+				}
+			else {
+				  return null;
+				 }
+				 
+		}
+		else
+		{
+			return null;
+		}		
+		//close Db connection
+        $dbh = DbConn::closeDbConnection();	
+	}
+	 
+} // end class Project
+
+// Define location class
+class Location
+{
+	public function __construct($locId,	                            
+								$locName)
+	{
+			$this->locId   = $locId;
+			$this->locName = $locName;						
+	}
+	
+	// properties
+	public $locId;
+	public $locName;
+		
+}	// end class Location
+
+?>
